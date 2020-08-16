@@ -2,7 +2,7 @@
 const express = require('express');
 const mongoose =require('mongoose')
 const Router = require ('./Router/index.routes.js')
-
+const bodyParser = require('body-parser')
 //creamos la conexion de la base de datos
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/veterinaria',{
@@ -16,6 +16,9 @@ mongoose.connect('mongodb://localhost/veterinaria',{
 const app = express();
 
 //----------------seccion de las middleware
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended : true }));
+
 app.use('/',Router());
 
 
@@ -33,6 +36,6 @@ app.use('/',Router());
 
 //--------------------Seccion del puerto
 
-app.listen(3000,()=>{
+app.listen(4000,()=>{
     console.log('el servidor funciona')
 })
