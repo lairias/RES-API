@@ -1,10 +1,11 @@
 //----------------serccion de las importaciones
 const express = require('express');
 const mongoose =require('mongoose')
+const Router = require ('./Router/index.routes.js')
 
 //creamos la conexion de la base de datos
 mongoose.Promise = global.Promise;
-mongoose.connect('mogod://localhost/veterinaria',{
+mongoose.connect('mongodb://localhost/veterinaria',{
     useNewUrlParser:true,
     useUnifiedTopology:true,
     useFindAndModify:false
@@ -15,7 +16,7 @@ mongoose.connect('mogod://localhost/veterinaria',{
 const app = express();
 
 //----------------seccion de las middleware
-
+app.use('/',Router());
 
 
 //-----------------seccion de las settings
